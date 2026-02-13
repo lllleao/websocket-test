@@ -12,7 +12,7 @@ export default function ChatPage() {
   useEffect(() => {
     const userEmail = localStorage.getItem("userEmail") as string;
 
-    const socket = new WebSocket("wss://www.cidadeclipsebackend.com.br/ws/");
+    const socket = new WebSocket("wss://www.cidadeclipsebackend.com.br/ws");
 
     socket.onopen = () => {
       socket.send(JSON.stringify({ type: "register", email: userEmail }));

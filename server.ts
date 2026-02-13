@@ -6,14 +6,16 @@ interface ExtendedWebSocket extends WebSocket {
 
 const wss = new WebSocketServer({
   port: 8080,
+  path: '/ws'
 });
 
 wss.on("listening", () => {
   console.log("SERVIDOR RODANDO");
 });
 
-wss.on("connection", (ws: ExtendedWebSocket) => {
+wss.on("connection", (ws: ExtendedWebSocket, req) => {
   console.log("Cliente conectado");
+  console.log("Headers:", req.headers);
 
   ws.on("message", (data) => {
     const raw = JSON.parse(data.toString()) as {
